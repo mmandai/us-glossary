@@ -155,7 +155,6 @@ if(localStorage.getItem('cookieConsent')==='accepted'){loadAnalytics();}
     <button class="cookie-btn cookie-reject" onclick="setCookieConsent('rejected')">Reject</button>
   </div> 
 </div>
-
 <header class="site-header">
   <div class="hd-inner">
     <a href="https://mmandai.github.io" class="logo">MM<em>DAI</em></a>
@@ -648,7 +647,11 @@ if(localStorage.getItem('cookieConsent')==='accepted'){loadAnalytics();}
     <p class="footer-disclaimer">This glossary is provided for informational and educational purposes only. Definitions, rates, and limits are updated periodically but may not reflect the most recent regulatory changes. Always consult a licensed mortgage professional (NMLS) or financial advisor before making property decisions. MMDAI accepts no liability for financial decisions based on this content. Information correct as of April 2026.</p>
   </div>
 </footer>
-
+<script> 
+function setCookieConsent(v){localStorage.setItem('cookieConsent',v);document.getElementById('cookieBanner').style.display='none';
+  if(v==='accepted')loadAnalytics();} 
+  if(!localStorage.getItem('cookieConsent')){document.getElementById('cookieBanner').style.display='flex';}  
+</script>
 <script>
 let activeFilter = 'all';
 
@@ -715,10 +718,6 @@ function updateSidebarOnScroll() {
     link.classList.toggle('active', link.textContent === current);
   });
 }
-
-function setCookieConsent(v){localStorage.setItem('cookieConsent',v);document.getElementById('cookieBanner').style.display='none';if(v==='accepted')loadAnalytics();}
-if(!localStorage.getItem('cookieConsent')){document.getElementById('cookieBanner').style.display='flex';}
-
 buildSidebar();
 filterTerms();
 window.addEventListener('scroll', updateSidebarOnScroll, { passive: true });
